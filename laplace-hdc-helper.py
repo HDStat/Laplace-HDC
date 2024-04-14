@@ -326,3 +326,40 @@ def haar_features(dataset, haar_conv, outdim):
 
     # return the convolutional features and labels
     return conv_features, conv_labels
+
+def svd_features(X, num_val, num_features):
+    """
+    Generate the singular value decomposition (svd) features
+
+    INPUT:
+    
+    X: Input Data
+    num_val: Number of possible values for each feature
+    num_features: Number of features in the data
+    
+    OUTPUT:
+    
+    svd_data: The input features transformed into svd features
+    """
+    if not isinstance(X, torch.Tensor):
+        raise ValueError("X must be a torch Tensor")
+    
+    x_dims = len(X.shape)
+    if x_dims < 2:
+        raise ValueError("Dimension Error: The input array X must be at least 2-dimensional.")
+
+    if x_dims >= 2:
+        X = X.reshape(X.shape[0], -1)
+
+    X = X.to(torch.float)/255
+    U, s, V = torch.linalg.svd(X, full_matrices = False)
+    B = U * s.reshape(1, -1)
+
+    X_new = B @ V
+
+    max_val = torch.max(X_new)
+    min_val = torch.min(X_new)
+
+    svd_data = ((X_new - min_val)/(max_val - min_val))
+    
+    return svd_data
