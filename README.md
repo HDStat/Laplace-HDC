@@ -11,13 +11,13 @@ Prerequisite Python Libraries:
 * numpy
 * tqdm
 
-Encoder Modes:
+**Encoder Modes**:
 The default encoder mode in the example is simple 1-dimensional cyclic shift (`shift_1d`). Other options:
 * `shift_2d`
 * `block_diag_shift_1d`
 * `block_diag_shift_2d`
 
-Classifier Modes:
+**Classifier Modes**:
 The default classifier in the example is Binary Stochastic Gradient Descent (`binary_sgd`). Other options:
 * `float_sgd`
 * `binary_majority`
