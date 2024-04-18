@@ -13,18 +13,18 @@ A basic plain example is provided in the file "*basic_example.ipynb*"
 
 **Encoder Modes**:
 
-The default encoder mode in the example is simple 1-dimensional cyclic shift (`shift_1d`). Other options:
-* `shift_2d`
-* `block_diag_shift_1d`
-* `block_diag_shift_2d`
-* `rand_permutation`
+The default encoder mode in the example is simple `shift_1d` (1-dimensional cyclic shift). Other options:
+* `shift_2d` (2-dimensional cyclic shift)
+* `block_diag_shift_1d` (1-dimensional block diagonal shift)
+* `block_diag_shift_2d` (2-dimensional block diagonal shift)
+* `rand_permutation` (Random Permutation)
 
 **Classifier Modes**:
 
 The default classifier in the example is Binary Stochastic Gradient Descent (`binary_sgd`). Other options:
-* `float_sgd`
-* `binary_majority`
-* `float_majority`
+* `float_sgd` (Float stochastic Gradient Descent)
+* `binary_majority` (Binary Majority Vote)
+* `float_majority` (Float Majority Vote)
 
 **Corresponding Authors**:
 * Saeid Pourmand*
