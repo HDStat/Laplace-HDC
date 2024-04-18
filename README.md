@@ -11,6 +11,7 @@ Prerequisite Python Libraries:
 * torch
 * torchvision
 * numpy
+* tqdm
 
 Encoder Modes:
 The default encoder mode in the example is simple 1-dimensional cyclic shift (`shift_1d`). Other options:
