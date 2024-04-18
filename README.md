@@ -7,7 +7,7 @@ This project corresponds to the paper "Laplace-HDC: Understanding the geometry o
 @article{pourmand2024laplacehdc,
       title={Laplace-HDC: Understanding the geometry of binary hyperdimensional computing}, 
       author={Saeid Pourmand and Wyatt D. Whiting and Alireza Aghasi and Nicholas F. Marshall},
-      journal={arXiv preprint 2404.10759},
+      journal={arXiv:2404.10759},
       year={2024},
 }
 ```
