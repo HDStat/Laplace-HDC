@@ -1,6 +1,16 @@
 # Laplace-HDC
 
-This project corresponds to the paper [Laplace-HDC: Understanding the geometry of binary hyperdimensional computing](https://doi.org/10.48550/arXiv.2404.10759).
+This project corresponds to the paper "Laplace-HDC: Understanding the geometry of binary hyperdimensional computing"
+[arXiv.2404.10759](https://doi.org/10.48550/arXiv.2404.10759)
+
+```
+@article{pourmand2024laplacehdc,
+      title={Laplace-HDC: Understanding the geometry of binary hyperdimensional computing}, 
+      author={Saeid Pourmand and Wyatt D. Whiting and Alireza Aghasi and Nicholas F. Marshall},
+      journal={arXiv preprint 2404.10759},
+      year={2024},
+}
+```
 
 A basic example is provided in the file "*basic_example.ipynb*"
 
