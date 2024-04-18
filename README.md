@@ -17,6 +17,7 @@ The default encoder mode in the example is simple 1-dimensional cyclic shift (`s
 * `shift_2d`
 * `block_diag_shift_1d`
 * `block_diag_shift_2d`
+* `rand_permutation`
 
 **Classifier Modes**:
 
