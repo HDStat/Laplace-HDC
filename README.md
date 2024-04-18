@@ -22,11 +22,11 @@ The default encoder mode in the example is simple `shift_1d` (1-dimensional cycl
 **Classifier Modes**:
 
 The default classifier in the example is Binary Stochastic Gradient Descent (`binary_sgd`). Other options:
-* `float_sgd` (Float stochastic Gradient Descent)
+* `float_sgd` (Float Stochastic Gradient Descent)
 * `binary_majority` (Binary Majority Vote)
 * `float_majority` (Float Majority Vote)
 
-**Corresponding Authors**:
+**Authors**:
 * Saeid Pourmand*
 * Wyatt D. Whiting*
 * Alireza Aghasi
