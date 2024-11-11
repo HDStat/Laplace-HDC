@@ -327,15 +327,13 @@ def haar_features(dataset, haar_conv, outdim):
     # return the convolutional features and labels
     return conv_features, conv_labels
 
-def svd_features(X, num_val, num_features):
+def svd_features(X):
     """
     Generate the singular value decomposition (svd) features
 
     INPUT:
     
     X: Input Data
-    num_val: Number of possible values for each feature
-    num_features: Number of features in the data
     
     OUTPUT:
     
