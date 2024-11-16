@@ -327,18 +327,68 @@ def haar_features(dataset, haar_conv, outdim):
     # return the convolutional features and labels
     return conv_features, conv_labels
 
-def svd_features(X):
+def svd_features(Xtrain, Xtest):
+
     """
     Generate the singular value decomposition (svd) features
 
     INPUT:
+
+    X: Input Data
+
+    OUTPUT:
+
+    svd_data: The input features transformed into svd features
+
+    """
+    X = torch.cat((Xtrain, Xtest), dim=0)
+    if not isinstance(X, torch.Tensor):
+        raise ValueError("X must be a torch Tensor")
+
+    x_dims = len(X.shape)
+    if x_dims < 2:
+        raise ValueError("Dimension Error: The input array X must be at least 2-dimensional.")
+
+    if x_dims >= 2:
+        X = X.reshape(X.shape[0], -1)
+
+ 
+
+    X = X.to(torch.float)/255
+    U, s, V = torch.linalg.svd(X, full_matrices = False)
+
+    X_new = X @ torch.transpose(V,0,1)
+
+    X_train_new = X_new[0:Xtrain.shape[0], :]
+
+    max_val = torch.max(X_train_new)
+    min_val = torch.min(X_train_new)
+    # max_val = torch.max(X_new)
+    # min_val = torch.min(X_new)
+
+    svd_data = ((X_new - min_val)/(max_val - min_val))
+
+    return svd_data
+
+def approx_svd_features(Xtrain, Xtest,nr,mode):
+    """
+    Generate the approximate singular value decomposition (svd) features
+    
+    Reference Paper: "FINDING STRUCTURE WITH RANDOMNESS: PROBABILISTIC ALGORITHMS FOR CONSTRUCTING APPROXIMATE MATRIX DECOMPOSITIONS", https://arxiv.org/pdf/0909.4061
+    Reference Blog: https://research.facebook.com/blog/2014/9/fast-randomized-svd/
+
+    INPUT:
     
     X: Input Data
+    nr: the number of columns in the matrix Q, using the approach in the paper/blog above 
+    mode: the nature of Q matrix. If set to 'G' it will use a Gaussian matrix, if set to 'B' it will use a symmetric Bernoulli matrix with elements -1, 1 (a Rademacher matrix)
     
     OUTPUT:
     
-    svd_data: The input features transformed into svd features
+    svd_data: The input features transformed into apparximate svd features
     """
+    X = torch.cat((Xtrain, Xtest), dim=0)
+        
     if not isinstance(X, torch.Tensor):
         raise ValueError("X must be a torch Tensor")
     
@@ -350,14 +400,27 @@ def svd_features(X):
         X = X.reshape(X.shape[0], -1)
 
     X = X.to(torch.float)/255
-    U, s, V = torch.linalg.svd(X, full_matrices = False)
-    B = U * s.reshape(1, -1)
+    
+    # generating the random matrix
+    if mode == 'G':
+        Q = torch.randn(X.size(0), nr)
+    elif mode == 'B':
+        Q = 2*torch.bernoulli(torch.full((X.size(0), nr),0.5))-1
+    else:
+        print('Invalid mode entry, use either G or B') 
+        
+    B = torch.transpose(Q,0,1) @ X
+    U, s, VT = torch.linalg.svd(B, full_matrices = False)
 
-    X_new = B @ V
+    X_new = X @ torch.transpose(VT,0,1)
 
-    max_val = torch.max(X_new)
-    min_val = torch.min(X_new)
+    X_train_new = X_new[0:60000, :]
+    # X_test_new = X_new[60000:70000, :]
+
+    max_val = torch.max(X_train_new)
+    min_val = torch.min(X_train_new)
 
     svd_data = ((X_new - min_val)/(max_val - min_val))
-    
+    # svd_data_test = ((X_test_new - min_val)/(max_val - min_val))
+
     return svd_data
