@@ -1,7 +1,7 @@
 # Laplace-HDC
 
-This project corresponds to the paper "Laplace-HDC: Understanding the geometry of binary hyperdimensional computing"
-[arXiv.2404.10759](https://doi.org/10.48550/arXiv.2404.10759)
+This project corresponds to the published paper "Laplace-HDC: Understanding the geometry of binary hyperdimensional computing"
+[arXiv.2404.10759](https://doi.org/10.48550/arXiv.2404.10759) In Journal of Artificial Intelligence Research.
 
 ```
 @article{pourmand2024laplacehdc,
